@@ -1,0 +1,110 @@
+<nav class="navbar navbar-expand-lg  navbar-light fixed-top" id="mainNav">
+  <div class="container">
+
+    <div *ngIf="!user">
+      <nav class="navbar navbar-expand-lg  navbar-light fixed-top" id="mainNav">
+        <div class="container">
+          <a class="navbar-brand js-scroll-trigger" routerLink="/home">
+            <i class="fa fa-4x fa-home text-primary sr-icons"></i>
+          </a>
+          <button (click)="login()" class="btn btn-primary btn-xl js-scroll-trigger text-white navbar-toggler-right">
+            <i class="fa fa-lock fa-4x" aria-hidden="true"></i>
+          </button>
+        </div>
+      </nav>
+    </div>
+
+    <div *ngIf="user">
+      <nav class="navbar navbar-expand-lg  navbar-light fixed-top" id="mainNav">
+        <div class="container">
+
+          <a class="navbar-brand js-scroll-trigger" routerLink="/home">
+            <i class="fa fa-4x fa-home text-primary sr-icons"></i>
+          </a>
+
+          <div class="btn-group navbar-toggler-right">
+            <img [src]="user.photoURL" class="rounded-circle dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+              width="50px" height="50px">
+            <div class="dropdown-menu">
+              <a class="dropdown-item text-primary">{{user.displayName}}</a>
+              <i class="dropdown-item text-primary" (click)="logout()">Cerrar</i>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+</nav>
+
+<header class="masthead">
+  <div class="header-content">
+    <div class="container">
+      <div *ngIf="user">
+        <h2>Historial de pedidos de : {{user.displayName}}</h2>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Descripción</th>
+              <th>Estado del requerimiento</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let pedido of pedidos | async">
+              <td>{{pedido.fecha | date:'yyyy/MM/dd HH:mm:ss'}}</td>
+              <td>{{pedido.descr}}</td>
+              <td>{{pedido.estado | estado}}</td>
+            </tr>
+          </tbody>
+        </table>
+<!--
+        <button (click)="addFolio()" class="btn btn-primary btn-xl js-scroll-trigger text-white navbar-toggler-right">
+          <i class="fa fa-plus fa-1x" aria-hidden="true"></i>
+        </button>
+      -->     
+        <a class="btn btn-primary btn-xl js-scroll-trigger text-white navbar-toggler-right" data-toggle="modal" href="#ingresodatos">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <i class="fa fa-plus fa-1x"></i>
+            </div>
+          </div>
+
+        </a>
+
+      </div>
+    </div>
+  </div>
+</header>
+
+  <!-- Modal 1 -->
+  <div class="portfolio-modal modal fade" id="ingresodatos" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+          <div class="lr">
+            <div class="rl"></div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <div class="modal-body">
+                <!-- Project Details Go Here -->
+                <div class="form-group">
+                  <label for="name">Describe tu problema </label>
+                  <textarea type="text" class="form-control" id="name" required [(ngModel)]="descripcion" rows="10" cols="50">
+                    </textarea>
+                </div>
+                <button (click)="addFolio()" class="btn btn-primary" data-dismiss="modal" type="button">
+                  Aceptar
+                </button>
+                <button class="btn btn-primary" data-dismiss="modal" type="button">
+                    Cancelar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

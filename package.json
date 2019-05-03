@@ -1,5 +1,5 @@
 {
-  "name": "my-app",
+  "name": "eltallerdenolan",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -21,7 +21,13 @@
     "@angular/platform-browser": "^4.2.4",
     "@angular/platform-browser-dynamic": "^4.2.4",
     "@angular/router": "^4.2.4",
+    "angular-font-awesome": "^3.1.2",
+    "angular2-uuid": "^1.1.1",
+    "angularfire2": "^5.0.0-rc.3",
+    "bootstrap": "^4.0.0-alpha.6",
     "core-js": "^2.4.1",
+    "firebase": "^4.6.1",
+    "font-awesome": "^4.7.0",
     "rxjs": "^5.4.2",
     "zone.js": "^0.8.14"
   },
